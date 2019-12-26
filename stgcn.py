@@ -57,9 +57,8 @@ class spatio_conv_layer(nn.Module):
         init.uniform_(self.b, -bound, bound)
 
     def forward(self, x):
-        b, c, t, n = x.shape
         x_c = torch.einsum("knm,bitm->bitkn", self.Lk, x)
-        x_gc = torch.einsum("iok,bitkn->botn", self.theta, x_c) + b
+        x_gc = torch.einsum("iok,bitkn->botn", self.theta, x_c) + self.b
         return torch.relu(x_gc + x)
 
 class st_conv_block(nn.Module):
