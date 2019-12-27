@@ -43,8 +43,6 @@ class temporal_conv_layer(nn.Module):
 class spatio_conv_layer(nn.Module):
     def __init__(self, ks, c, Lk):
         super(spatio_conv_layer, self).__init__()
-        self.ks = ks
-        self.c = c
         self.Lk = Lk
         self.theta = nn.Parameter(torch.FloatTensor(c, c, ks))
         self.b = nn.Parameter(torch.FloatTensor(1, c, 1, 1))
